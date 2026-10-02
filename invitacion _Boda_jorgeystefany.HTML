@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jorge &amp; Stefany · 8 de Enero de 2027</title>
+  <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)">
+  <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
+  <link rel="stylesheet" href="[https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;500;600;700&display=swap](https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;500;600;700&display=swap)">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    p, h1, h2, h3 { margin: 0; }
+    img { max-width: 100%; height: auto; }
+
+    .boda {
+      font-family: 'Lato', sans-serif;
+      background: linear-gradient(160deg, #ffffff 0%, #fdf8f3 35%, #f7e8e2 70%, #f2d9d0 100%);
+      color: #5c3a3a;
+      overflow-x: hidden;
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 10px;
+    }
+
+    .petals-container, .petals-front {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; overflow: hidden;
+    }
+    .petals-container { z-index: 0; }
+    .petals-front { z-index: 10; }
+    .petal {
+      position: absolute; width: 10px; height: 16px;
+      background: radial-gradient(ellipse at center, rgba(242,217,208,0.75) 0%, rgba(242,217,208,0.25) 70%, transparent 100%);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      animation: fall linear infinite; opacity: 0.6;
+    }
+    .petals-front .petal {
+      background: radial-gradient(ellipse at center, rgba(250,230,220,0.85) 0%, rgba(242,217,208,0.35) 70%, transparent 100%);
+      opacity: 0.75;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.6; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+    .boda .container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* MARCO DORADO CONTENIDO */
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      border: 2px solid rgba(201, 168, 76, 0.4);
+      border-radius: 18px;
+      box-shadow: 0 18px 60px rgba(92, 58, 58, 0.12);
+      padding: 50px 30px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      border: 1px solid rgba(201, 168, 76, 0.35);
+      border-radius: 12px;
+      pointer-events: none;
+    }
+
+    .card-content {
+      position: relative;
+      z-index: 3;
+    }
+
+    .subtitle-top {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: #8c6d6d;
+      margin-bottom: 20px;
+    }
+
+    .main-title {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 2.8rem;
+      color: #5c3a3a;
+      margin-bottom: 15px;
+      line-height: 1.2;
+    }
+
+    .event-details {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+    }
+
+    /* CONFIRMACIÓN AL FINAL CON BOTÓN DE WHATSAPP */
+    .rsvp-bottom-section {
+      margin-top: 40px;
+      padding-top: 20px;
+    }
+
+    .rsvp-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 2rem;
+      color: #5c3a3a;
+      margin-bottom: 10px;
+    }
+
+    .rsvp-text {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      color: #666666;
+      margin-bottom: 25px;
+    }
+
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background-color: #22c55e;
+      color: #ffffff;
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .btn-whatsapp:hover {
+      background-color: #16a34a;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 600px) {
+      .main-title { font-size: 2.2rem; }
+      .card { padding: 35px 20px; }
+      .rsvp-title { font-size: 1.7rem; }
+    }
+  </style>
+</head>
+<body class="boda">
+
+  <!-- Caída de pétalos -->
+  <div class="petals-container">
+    <div class="petal" style="left: 10%; animation-duration: 10s; animation-delay: 0s;"></div>
+    <div class="petal" style="left: 30%; animation-duration: 12s; animation-delay: 2s;"></div>
+    <div class="petal" style="left: 60%; animation-duration: 9s; animation-delay: 1s;"></div>
+    <div class="petal" style="left: 80%; animation-duration: 11s; animation-delay: 3s;"></div>
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <div class="card-content">
+        <p class="subtitle-top">Acompáñanos en este gran día</p>
+        <h1 class="main-title">JORGE &amp; STEFANY</h1>
+        <p class="event-details">8 de Enero de 2027</p>
+
+        <!-- SECCIÓN DE CONFIRMACIÓN AL FINAL -->
+        <div class="rsvp-bottom-section">
+          <h2 class="rsvp-title">Confirmación de asistencia</h2>
+          <p class="rsvp-text">Agradecemos confirmar tu asistencia hasta el 15 de diciembre de 2026.</p>
+          
+          <a href="[https://wa.me/?text=Hola,%20confirmo%20mi%20asistencia](https://wa.me/?text=Hola,%20confirmo%20mi%20asistencia)" target="_blank" class="btn-whatsapp">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.205 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.842-1.021z"/>
+            </svg>
+            CONFIRMA TU ASISTENCIA
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+git add .
+git commit -m "Corregir archivo HTML y estilos de confirmacion"
+git push origin main
