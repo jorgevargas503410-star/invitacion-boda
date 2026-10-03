@@ -62,31 +62,9 @@ body {
     <span id="music-icon">🎵</span> <span id="music-text">Reproducir música</span>
 </div>
 
-<script>
-    const audio = document.getElementById('background-music');
-    const musicControl = document.getElementById('music-control');
-    const musicText = document.getElementById('music-text');
-    let isPlaying = false;
-
-    musicControl.addEventListener('click', () => {
-        if (isPlaying) {
-            audio.pause();
-            musicText.textContent = "Reproducir música";
-            musicControl.style.opacity = "0.7";
-        } else {
-            audio.play().then(() => {
-                musicText.textContent = "Pausar música";
-                musicControl.style.opacity = "1";
-            }).catch(error => {
-                console.log("Error al reproducir audio: ", error);
-            });
-        }
-        isPlaying = !isPlaying;
-    });
-</script>
-  <!-- Sección Panel Admin Oculto / Visible -->
-<section id="admin-section" style="max-width: 600px; margin: 40px auto; padding: 20px; background: #f8f9fa; border: 1px solid #ddd; border-radius: 8px; font-family: sans-serif;">
-    <h3 style="margin-top: 0; color: #333; border-bottom: 2px solid #007bff; padding-bottom: 8px;">Panel de Administración</h3>
+<!-- Panel de Administración Oculto por defecto -->
+<section id="admin-section" style="display: none; max-width: 600px; margin: 40px auto; padding: 20px; background: #f8f9fa; border: 2px dashed #007bff; border-radius: 8px; font-family: sans-serif; position: relative; z-index: 99999;">
+    <h3 style="margin-top: 0; color: #333; border-bottom: 2px solid #007bff; padding-bottom: 8px;">Panel de Administración (Secreto)</h3>
     
     <div style="margin-bottom: 15px;">
         <label style="display: block; font-weight: bold; margin-bottom: 5px;">Cambiar Nombre de los Novios:</label>
@@ -99,14 +77,30 @@ body {
     </div>
 
     <button onclick="guardarCambios()" style="background: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer;">Guardar Cambios</button>
+    <button onclick="cerrarAdmin()" style="background: #6c757d; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; margin-left: 10px;">Cerrar Panel</button>
 </section>
 
 <script>
+    // Atajo secreto: Presiona Ctrl + Shift + A para mostrar u ocultar el panel
+    document.addEventListener('keydown', function(event) {
+        if (event.ctrlKey && event.shiftKey && event.key.toUpperCase() === 'A') {
+            const adminPanel = document.getElementById('admin-section');
+            if (adminPanel.style.display === 'none') {
+                adminPanel.style.display = 'block';
+                window.scrollTo({ top: adminPanel.offsetTop, behavior: 'smooth' });
+            } else {
+                adminPanel.style.display = 'none';
+            }
+        }
+    });
+
+    function cerrarAdmin() {
+        document.getElementById('admin-section').style.display = 'none';
+    }
+
     function guardarCambios() {
         const nuevosNombres = document.getElementById('admin-names').value;
         const nuevaFecha = document.getElementById('admin-date').value;
-        
-        // Aquí puedes actualizar los elementos visuales de tu invitación en tiempo real
         alert("¡Cambios guardados con éxito para: " + nuevosNombres + " (" + nuevaFecha + ")!");
     }
 </script>
