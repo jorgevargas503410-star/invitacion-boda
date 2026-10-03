@@ -104,6 +104,18 @@ body {
         alert("¡Cambios guardados con éxito para: " + nuevosNombres + " (" + nuevaFecha + ")!");
     }
 </script>
+<script>
+    // Detecta automáticamente si la URL incluye "?admin=true"
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('admin') === 'true') {
+            const adminPanel = document.getElementById('admin-section');
+            if (adminPanel) {
+                adminPanel.style.display = 'block';
+            }
+        }
+    });
+</script>
 /* CARD */
 .card {
   background: rgba(255, 255, 255, 0.92);
